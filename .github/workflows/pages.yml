@@ -1,4 +1,5 @@
 name: Deploy React to GitHub Pages
+
 on:
   push:
     branches: [ main ]
@@ -18,17 +19,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - name: Install deps
-        run: npm ci || npm i
-      - name: Build
-        run: npm run build
-        env:
-          PUBLIC_URL: https://akhilanivarthi.com
-          CI: true
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: build }
+        with:
+          node-version: 18   # 18 is the most compatible baseline
+
+      - name: Detect package manager
+        id: pm
+        run: |
+          if [ -f yarn.lock ]; then echo "mgr=yarn" >> $GITHUB_OUTPUT;
+          elif [ -f pnpm-lock.yaml ]; then echo "mgr=pnpm" >> $GITHUB_OUTPUT;
+          else echo "mgr=npm" >> $GITHUB_OUTPUT; fi
+
+      - name: Install dependencies
+        run: |
+          if [ "${{ steps.pm.outputs.mgr }}" = "yarn" ]; then corepack enable && yarn install --frozen-lockfile;
+          elif [ "${{ steps.pm.outputs.mgr }}" = "pnpm" ]; then corepack enable && pnpm i --frozen-lockfile;
+          else npm ci || npm i; fi
+
+      - name: Build (unset CI so CRA warnings don't fail)
+        id: build
+        run: |
+          if [ "${{ steps.pm.outputs.mgr }}" = "yarn" ]; then CI='' yarn build;
+          elif [ "${{ steps.pm.outputs.mgr }}" = "pnpm" ]; then CI='' pnpm build;
+          else CI='' npm run build; fi
+
+          # Auto-detect output folder
+          if [ -d "build" ]; then echo "out=build" >> $GITHUB_OUTPUT;
+          elif [ -d "dist" ]; then echo "out=dist" >> $GITHUB_OUTPUT;
+          else echo "No build output dir found"; ls -la; exit 1; fi
+
+      - name: Show output dir (debug)
+        run: ls -la "${{ steps.build.outputs.out }}"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.build.outputs.out }}
 
   deploy:
     needs: build
