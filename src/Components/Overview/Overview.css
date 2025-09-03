@@ -1,0 +1,81 @@
+/* ================= Overview.css (mobile-first, image + paragraph aligned) ================= */
+
+.section-overview {
+    /* Scoped tokens */
+    --content-max: 1100px;
+    --page-gutter: clamp(16px, 5vw, 32px); /* safe side padding */
+    --block-space: clamp(24px, 6vw, 64px); /* top/bottom padding */
+    --column-gap-desktop: 22px;            /* gap between image and paragraph on desktop */
+  
+    background: transparent; /* same as page bg */
+    color: inherit;          /* use your site's text color */
+  }
+  
+  /* Container + layout */
+  .container-overview {
+    margin: 0 auto;
+    max-width: var(--content-max);
+  
+    /* Safe-area support for notches */
+    padding-left: calc(var(--page-gutter) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--page-gutter) + env(safe-area-inset-right, 0px));
+    padding-top: var(--block-space);
+    padding-bottom: var(--block-space);
+  
+    display: grid;
+    grid-template-columns: 1fr; /* mobile: stack */
+    gap: 16px;
+    align-items: start;
+  }
+  
+  /* Title spans full width above both columns */
+  .title-overview {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 50px);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  
+  /* Big responsive image */
+  .image-overview {
+    /* Large but responsive; centers on mobile */
+    width: min(100%, clamp(300px, 36vw, 520px));
+    height: auto;
+    border-radius: 25px;
+    display: block;
+  }
+  
+  /* Paragraph block */
+  .paragraph-overview {
+    font-size: clamp(16px, 2.8vw, 22px);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 65ch;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    min-width: 0; /* prevents overflow in grid */
+  }
+  
+  /* Very small phones: soften spacing/type a bit */
+  @media (max-width: 360px) {
+    .container-overview { gap: 14px; }
+    .title-overview { font-size: clamp(24px, 7vw, 44px); }
+  }
+  
+  /* Desktop: 2 columns with title spanning across
+     image and paragraph start on the same row (aligned tops) */
+  @media (min-width: 900px) {
+    .container-overview {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: var(--column-gap-desktop);
+      grid-template-areas:
+        "title-overview title-overview"
+        "image-overview paragraph-overview";
+    }
+  
+    .title-overview { grid-area: title-overview; }
+    .image-overview { grid-area: image-overview; align-self: start; }
+    .paragraph-overview { grid-area: paragraph-overview; align-self: start; }
+  }
+  

@@ -1,0 +1,101 @@
+/* ================= Title.css (mobile-first, divider under heading) ================= */
+
+.section-title {
+    /* Scoped tokens */
+    --content-max: 1100px;
+    --page-gutter: clamp(16px, 5vw, 32px);
+    --block-space: clamp(32px, 8vw, 96px);
+    --title-gap: clamp(6px, 1.2vw, 12px);
+  
+    /* Divider controls */
+    --accent-title: currentColor;                 /* overridden by inline style if Color passed */
+    --divider-thickness: 2px;
+    --divider-opacity: 0.35;
+    --divider-gap: clamp(12px, 2vw, 20px);       /* space above/below the divider */
+  
+    color: inherit;
+    background: transparent;
+  }
+  
+  /* Container with safe-area gutters */
+  .container-title {
+    margin: 0 auto;
+    max-width: var(--content-max);
+  
+    padding-left: calc(var(--page-gutter) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--page-gutter) + env(safe-area-inset-right, 0px));
+    padding-top: var(--block-space);
+    padding-bottom: var(--block-space);
+  
+    display: grid;
+    gap: clamp(16px, 3vw, 28px);
+  }
+  
+  /* Heading block: big title then smaller label */
+  .heading-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--title-gap);
+    margin: 0;
+  }
+  
+  .title-main-title {
+    margin: 0;
+    line-height: 1.08;
+    font-weight: 800;
+    font-size: clamp(32px, 7.5vw, 72px);
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  
+  .title-label-title {
+    margin: 0;
+    line-height: 1.15;
+    font-weight: 600;
+    font-size: clamp(18px, 3.5vw, 32px);
+    opacity: 0.95;
+    text-wrap: balance;
+  }
+  
+  /* Divider just under the heading */
+  .divider-title {
+    height: var(--divider-thickness);
+    background: var(--accent-title);
+    opacity: var(--divider-opacity);
+    border-radius: 999px;
+    margin-top: calc(var(--divider-gap) * -0.25); /* tighten slightly toward label */
+    margin-bottom: var(--divider-gap);
+    /* Full width; if you want a shorter line, add: width: 60%; */
+  }
+  
+  /* Meta row (Duration / Team / Role) */
+  .meta-title {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px 24px;
+    font-size: clamp(14px, 2.2vw, 20px);
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .meta-title p {
+    margin: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  
+  /* Tablet+: lay meta out in a row */
+  @media (min-width: 700px) {
+    .meta-title {
+      grid-template-columns: auto auto auto;
+      align-items: baseline;
+    }
+  }
+  
+  /* Desktop refinements */
+  @media (min-width: 1024px) {
+    .meta-title { column-gap: 48px; }
+  }
+  

@@ -1,0 +1,223 @@
+/* ================ Sony.css (mobile-first, even spacing, sony- prefix) ================ */
+
+/* Tokens */
+:root {
+  --sony-content-max: 1100px;
+  --sony-page-gutter: clamp(16px, 5vw, 32px);
+  --sony-block-space: clamp(20px, 6vw, 56px);
+
+  --sony-gap: clamp(12px, 3vw, 24px);
+  --sony-gap-lg: clamp(16px, 4vw, 32px);
+  --sony-gap-xl: clamp(24px, 6vw, 48px);
+
+  --sony-radius: 12px;
+  --sony-shadow: 0 4px 10px rgba(0,0,0,.12);
+
+  --sony-card-font: clamp(16px, 2.6vw, 20px);
+  --sony-caption-font: clamp(14px, 2.5vw, 18px);
+}
+
+/* Generic section wrapper used inside White/Black children */
+.sony-section {
+  margin-top: var(--sony-block-space);
+  margin-bottom: var(--sony-block-space);
+  display: grid;
+  gap: var(--sony-gap);
+}
+
+/* Optional title inside sections */
+.sony-section-title {
+  margin: 0;
+  font-size: clamp(20px, 4.5vw, 32px);
+  line-height: 1.2;
+}
+
+/* Two-column row that stacks on mobile */
+.sony-row-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sony-gap);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .sony-row-2 {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* ========== 1) Equal-size boxes in User Research ========== */
+.sony-userresearch-row { align-items: stretch; }
+.sony-userresearch-row .sony-card {
+  height: 100%;
+  min-height: clamp(220px, 28vw, 280px); /* equal baseline size */
+}
+
+/* Card base */
+.sony-card {
+  background: #fff;
+  color: #000;
+  padding: clamp(12px, 2.5vw, 20px);
+  border-radius: var(--sony-radius);
+  box-shadow: var(--sony-shadow);
+  font-size: var(--sony-card-font);
+  line-height: 1.55;
+}
+
+/* Color variants */
+.sony-card--pink  { background: rgb(149,201,239); border: 1px solid rgb(149,201,239); }
+.sony-card--green { background: rgb(149,201,239); border: 1px solid rgb(149,201,239); }
+.sony-card--blue  { background: rgb(149,201,239); border: 1px solid rgb(149,201,239); }
+.sony-card--red   { background: rgb(149,201,239); border: 1px solid rgb(149,201,239); }
+
+/* Tighter bullet spacing for readability */
+.sony-card ul { margin: 0; padding-left: 1.1em; }
+.sony-card ul li + li { margin-top: 6px; }
+
+/* ========== 2) Desktop research spacing (GIFs/images + red boxes) ========== */
+
+/* Media (Reddit/Instagram/Windows) — side-by-side on desktop, with big gaps and space before/after */
+.sony-desktopresearch-section { gap: var(--sony-gap-lg); }
+
+.sony-media-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sony-gap-lg);            /* more gap between items */
+  margin-top: var(--sony-gap-lg);     /* gap before group */
+  margin-bottom: var(--sony-gap-lg);  /* gap after group */
+}
+@media (min-width: 700px) {
+  .sony-media-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.sony-media-item { display: grid; gap: 12px; } /* space between caption & image */
+.sony-media-caption {
+  margin: 0;
+  font-size: var(--sony-caption-font);
+  opacity: .95;
+}
+.sony-media-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--sony-radius);
+  display: block;
+}
+
+/* Red “concept” boxes — right next to each other with gaps and buffer around */
+.sony-card-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;        /* stack on mobile */
+  gap: var(--sony-gap-lg);
+  margin-top: var(--sony-gap-lg);    /* gap before */
+  margin-bottom: var(--sony-gap-lg); /* gap after */
+}
+@media (min-width: 900px) {
+  .sony-card-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Stronger bottom spacing helper */
+.sony-space-bottom-strong { margin-bottom: calc(var(--sony-block-space) * 1.2); }
+
+/* ========== 3) Persona higher; Storyboards bigger, one-per-line, with gaps ========== */
+
+.sony-persona-img {
+  width: min(100%, 680px);
+  height: auto;
+  border-radius: var(--sony-radius);
+  display: block;
+  margin-inline: auto;
+  margin-top: -16px; /* move image up a bit more */
+}
+
+.sony-text {
+  margin: 0;
+  font-size: clamp(16px, 2.6vw, 20px);
+  line-height: 1.65;
+}
+
+/* Always one per line; bigger; gaps between each storyboard image */
+.sony-storyboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;         /* separate lines */
+  gap: var(--sony-gap-xl);            /* bigger gaps between them */
+  margin-top: var(--sony-gap-lg);
+  margin-bottom: var(--sony-gap-lg);
+}
+.sony-storyboard-img {
+  width: min(100%, 1000px);           /* larger max width */
+  height: auto;
+  border-radius: var(--sony-radius);
+  display: block;
+  margin-inline: auto;                /* center each image */
+}
+
+/* ========== 4) Final designs — smaller images; center-align card to image ========== */
+
+/* center the card vertically to the image only in final section */
+.sony-final-section .sony-row-2 { align-items: center; }
+
+/* smaller solution GIFs/images */
+.sony-solution-media {
+  width: min(100%, 320px);            /* smaller than before */
+  height: auto;
+  border-radius: var(--sony-radius);
+  display: block;
+  justify-self: start;
+}
+@media (min-width: 900px) {
+  .sony-solution-media { width: min(100%, 300px); } /* even smaller on desktop */
+}
+
+/* --- Desktop Research: bigger gaps between GIFs/images + buffer before/after --- */
+.sony-media-grid {
+  gap: var(--sony-gap-xl);          /* more space between Instagram / Reddit / Windows */
+  margin-top: var(--sony-gap-lg);   /* space before the grid */
+  margin-bottom: var(--sony-gap-xl);/* space after the grid */
+}
+.sony-media-item { gap: 14px; }     /* a touch more space between caption and image */
+
+/* If you want the red concept boxes group roomier too: */
+.sony-card-grid-3 {
+  gap: var(--sony-gap-xl);
+  margin-top: var(--sony-gap-xl);
+  margin-bottom: var(--sony-gap-xl);
+}
+
+/* --- Storyboards: ensure clear gaps between each image (one per line) --- */
+.sony-storyboard-grid {
+  gap: calc(var(--sony-gap-xl) * 1.1);  /* slightly larger gap between each storyboard */
+  margin-top: var(--sony-gap-lg);
+  margin-bottom: var(--sony-gap-lg);
+}
+
+/* --- Final Designs: more space between description & image, plus space after each row --- */
+.sony-final-section .sony-row-2 {
+  /* extra space between the card and the image, vertical & horizontal */
+  gap: var(--sony-gap-xl);
+  align-items: center;                      /* keep the card centered to the image */
+  margin-bottom: var(--sony-gap-xl);        /* space after each row (after the image) */
+}
+
+/* keep the images on the smaller side and add a tiny breathing room inside the row */
+.sony-final-section .sony-solution-media {
+  width: min(100%, 300px);                  /* small image size */
+  margin-bottom: var(--sony-gap);           /* slight gap beneath the image on mobile */
+}
+@media (min-width: 900px) {
+  .sony-final-section .sony-solution-media {
+    width: min(100%, 280px);                /* a bit smaller on desktop */
+  }
+}
+
+/* Move Final Designs images more to the right (desktop only) */
+@media (min-width: 900px) {
+  /* Give the text card a bit more width and the image column a bit less,
+     which visually shifts the image toward the right edge */
+  .sony-final-section .sony-row-2 {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+
+  /* Hug the right side of its grid column */
+  .sony-final-section .sony-solution-media {
+    justify-self: end;               /* push to the right within the column */
+    margin-right: clamp(0px, 1vw, 12px); /* tiny optional nudge toward the edge */
+  }
+}

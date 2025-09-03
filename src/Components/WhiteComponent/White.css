@@ -1,0 +1,122 @@
+/* ================= White.css (mobile-first, full-bleed, 50/50 on desktop) ================= */
+
+/* ===== full-bleed white section (prevents black edges) ===== */
+.background-white {
+    /* Component-scoped tokens */
+    --content-max: 1100px;
+    --page-gutter: clamp(16px, 5vw, 32px);
+  
+    /* Desktop spacing + optical alignment controls */
+    --column-gap-desktop: 22px;   /* gap between title/paragraph at >=900px */
+    --paragraph-nudge: -6px;      /* lift paragraph slightly on desktop */
+  
+    background: #fff;
+    color: #000;
+  }
+  
+  /* Break out to viewport edges even if body has padding */
+  .fullbleed-white {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  
+  /* Optional: fill first screen, top-aligned */
+  .hero-white {
+    min-height: 100vh;   /* fallback */
+    min-height: 100dvh;  /* mobile-correct */
+    display: block;
+  }
+  
+  /* ===== inner container & layout ===== */
+  .container-white {
+    margin: 0 auto;
+    max-width: var(--content-max);
+  
+    /* Safe gutters (support iOS notches) */
+    padding-top: clamp(24px, 6vw, 64px);
+    padding-bottom: clamp(24px, 6vw, 64px);
+    padding-left: calc(var(--page-gutter) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--page-gutter) + env(safe-area-inset-right, 0px));
+  
+    /* Layout: stack on mobile */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  
+  /* Left column: title on top, logo underneath */
+  .heading-white {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px; /* space between title and logo */
+    max-width: 100%;
+  }
+  
+  .title-white {
+    margin: 0;
+    line-height: 1.1;
+    font-size: clamp(26px, 6vw, 50px);
+    text-wrap: balance;          /* nicer heading wraps on mobile/desktop */
+    overflow-wrap: anywhere;     /* wrap extremely long words/tokens */
+    word-break: break-word;      /* safety for long tokens */
+  }
+  
+  /* Logo scales with viewport; stays under title */
+  .logo-white {
+    width: clamp(56px, 10vw, 100px);
+    height: clamp(56px, 10vw, 100px);
+    border-radius: 25px;
+    object-fit: cover;
+  }
+  
+  /* Right column: paragraph */
+  .paragraph-white {
+    margin: 0;                         /* aligns with title top */
+    font-size: clamp(16px, 2.8vw, 22px);
+    line-height: 1.55;
+    max-width: 65ch;
+    align-self: start;
+    hyphens: auto;                     /* cleaner wraps for long words */
+    min-width: 0;                      /* avoid overflow in grids */
+  }
+  
+  /* Children area uses same gutters */
+  .children-white {
+    margin: 10px auto 0;
+    max-width: var(--content-max);
+    padding-left: calc(var(--page-gutter) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--page-gutter) + env(safe-area-inset-right, 0px));
+    padding-bottom: clamp(16px, 4vw, 32px);
+  }
+  
+  /* Media within the section should be fluid */
+  .background-white img,
+  .background-white video,
+  .background-white svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* ===== very small phones: soften spacing/type a bit ===== */
+  @media (max-width: 360px) {
+    .title-white { font-size: clamp(24px, 7vw, 44px); }
+    .container-white { gap: 14px; }
+  }
+  
+  /* ===== desktop: force 50/50 columns and apply optical nudge ===== */
+  @media (min-width: 900px) {
+    .container-white {
+      /* equal halves; minmax(0,1fr) prevents overflow from long content */
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: var(--column-gap-desktop);
+    }
+  
+    /* Optical top alignment for big title vs paragraph */
+    .paragraph-white {
+      margin-top: var(--paragraph-nudge);
+    }
+  }
+  

@@ -1,0 +1,290 @@
+/* ====================== Wifire.css (mobile-first, wfr- prefix) ====================== */
+
+/* Tokens */
+:root {
+  --wfr-content-max: 1100px;
+  --wfr-gutter: clamp(16px, 5vw, 32px);
+  --wfr-space: clamp(20px, 6vw, 56px);
+
+  --wfr-gap: clamp(12px, 3vw, 24px);
+  --wfr-gap-lg: clamp(16px, 4vw, 32px);
+  --wfr-gap-xl: clamp(24px, 6vw, 48px);
+
+  --wfr-radius: 12px;
+  --wfr-shadow: 0 4px 10px rgba(0,0,0,.12);
+
+  --wfr-red: rgb(239,149,149);
+
+  /* uniform image sizes per group */
+  --wfr-media-h: clamp(220px, 35vw, 420px);    /* pairs */
+  --wfr-sketch-h: clamp(260px, 40vw, 520px);   /* sketches pair */
+  --wfr-mini-w: clamp(240px, 38vw, 360px);     /* mini-game images */
+  --wfr-mini-h: clamp(200px, 30vw, 280px);
+
+  /* final designs: force exact same size everywhere */
+  --wfr-final-w: clamp(220px, 26vw, 280px);
+  --wfr-final-h: clamp(160px, 20vw, 200px);
+
+  /* typography */
+  --wfr-text: clamp(16px, 2.6vw, 20px);
+  --wfr-h2: clamp(20px, 4.5vw, 30px);
+  --wfr-h3: clamp(18px, 3.8vw, 24px);
+  --wfr-label: clamp(13px, 2.4vw, 16px);
+}
+
+/* Container */
+.wfr-container {
+  max-width: var(--wfr-content-max);
+  margin: 0 auto;
+  padding-left: calc(var(--wfr-gutter) + env(safe-area-inset-left, 0px));
+  padding-right: calc(var(--wfr-gutter) + env(safe-area-inset-right, 0px));
+}
+
+/* Generic section wrapper */
+.wfr-section {
+  margin-top: var(--wfr-space);
+  margin-bottom: var(--wfr-space);
+  display: grid;
+  gap: var(--wfr-gap);
+}
+
+/* Headings and text (uniform sizes/weight) */
+.wfr-section-title {
+  margin: 0;
+  font-size: var(--wfr-h2);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.wfr-card-title {
+  margin: 0 0 8px 0;
+  font-size: var(--wfr-h3);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.wfr-text,
+.wfr-list,
+.wfr-text-block {
+  font-size: var(--wfr-text);
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 0;
+}
+
+.wfr-text-block { margin-top: var(--wfr-gap); }
+
+.wfr-list { padding-left: 1.2em; }
+.wfr-list li + li { margin-top: 6px; }
+
+/* Layout primitives */
+.wfr-row-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wfr-gap);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .wfr-row-2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+/* Always stack vertically (Original Idea, Character-only row) */
+.wfr-stack {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: var(--wfr-gap-lg);
+}
+
+/* Extra gap after a block (Original Idea wrapper) */
+.wfr-gap-after { margin-bottom: var(--wfr-gap-xl); }
+
+/* User research equal-height */
+.wfr-userresearch-row { align-items: stretch; }
+.wfr-userresearch-row .wfr-card {
+  height: 100%;
+  min-height: clamp(240px, 28vw, 300px);
+}
+
+/* Card — ALL RED */
+.wfr-card {
+  background: var(--wfr-red);
+  border: 1px solid var(--wfr-red);
+  color: #000;
+  padding: clamp(12px, 2.5vw, 20px);
+  border-radius: var(--wfr-radius);
+  box-shadow: var(--wfr-shadow);
+}
+
+/* Centered card (insights) */
+.wfr-card-center {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Media pairs */
+.wfr-media-row { align-items: center; overflow: visible; }
+.wfr-media-row.wfr-media-row--spread { gap: var(--wfr-gap-xl); }
+
+.wfr-media-img {
+  width: 100%;
+  height: var(--wfr-media-h);
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--wfr-radius);
+  display: block;
+}
+
+/* Use contain when we must avoid any cropping (Original Idea + Character) */
+.wfr-media-img.wfr-media-img--contain {
+  object-fit: contain !important;      /* ensure full image is visible */
+  background: rgba(255,255,255,0.04);  /* subtle backdrop for letterboxing */
+}
+
+/* Sketch pair */
+.wfr-sketch-img {
+  width: 100%;
+  height: var(--wfr-sketch-h);
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--wfr-radius);
+  display: block;
+}
+
+/* Prototyping section spacing */
+.wfr-proto > * + * { margin-top: var(--wfr-gap-lg); }
+
+.wfr-mini-list {
+  list-style: none;
+  margin: var(--wfr-gap-lg) 0 var(--wfr-gap-xl);
+  padding: 0;
+  display: grid;
+  gap: var(--wfr-gap-xl);
+}
+.wfr-mini-row {
+  align-items: center;
+  margin-bottom: var(--wfr-gap-lg);
+}
+
+/* Push mini-game images further right on desktop */
+@media (min-width: 900px) {
+  .wfr-mini-row {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); /* card | image */
+  }
+  .wfr-mini-row .wfr-mini-img {
+    justify-self: end;
+    margin-left: clamp(10px, 2.5vw, 20px);
+  }
+}
+
+.wfr-mini-img {
+  width: var(--wfr-mini-w);
+  height: var(--wfr-mini-h);
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--wfr-radius);
+  display: block;
+}
+
+/* Single image in prototyping (Character only) */
+.wfr-media-img--small   { height: calc(var(--wfr-media-h) * 0.7); }
+
+/* Final designs — aligned rows and identical sizes */
+.wfr-final-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wfr-gap-lg);
+  margin-top: var(--wfr-gap-lg);
+  margin-bottom: var(--wfr-gap-xl);
+  align-items: start;
+}
+@media (min-width: 800px) {
+  .wfr-final-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Last row (2 items) centered */
+.wfr-final-grid--two {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wfr-gap-lg);
+  justify-items: center;
+}
+@media (min-width: 800px) {
+  .wfr-final-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
+  }
+}
+
+/* Enforce identical thumbnail sizes everywhere (override any stray rules) */
+.wfr-final-grid .wfr-final-img,
+.wfr-final-grid--two .wfr-final-img {
+  width: var(--wfr-final-w) !important;
+  height: var(--wfr-final-h) !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.wfr-final-item {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+/* Keep caption heights consistent to avoid row wiggle */
+.wfr-label {
+  font-size: var(--wfr-label);
+  opacity: .95;
+  text-align: center;
+  margin: 0;
+  min-height: 1.4em;
+}
+
+/* Callout line */
+.wfr-callout {
+  margin-top: var(--wfr-gap-lg);
+  font-size: var(--wfr-text);
+  color: rgb(250, 65, 65);
+  text-align: center;
+}
+
+/* Small polish for ordered lists within cards */
+.wfr-card ol { padding-left: 1.2em; }
+.wfr-card ol li + li { margin-top: 8px; }
+
+/* ======= Final Designs: restore original rows (3 per row on desktop) ======= */
+.wfr-final-row {
+  display: grid;
+  grid-template-columns: 1fr;                  /* stack on mobile */
+  gap: var(--wfr-gap-lg);
+  margin-top: var(--wfr-gap-lg);
+}
+@media (min-width: 800px) {
+  .wfr-final-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Items + captions */
+.wfr-final-item {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+/* Base thumbnail size (same as before) */
+.wfr-final-img {
+  width: var(--wfr-final-w);
+  height: var(--wfr-final-h);
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--wfr-radius);
+  display: block;
+}
+
+/* Map a bit bigger, Matching a bit smaller */
+.wfr-final-img--map {
+  width: calc(var(--wfr-final-w) * 1.90);
+  height: calc(var(--wfr-final-h) * 1.30);
+}
+.wfr-final-img--matching {
+  width: calc(var(--wfr-final-w) * 0.83);
+  height: calc(var(--wfr-final-h) * 0.70);
+}

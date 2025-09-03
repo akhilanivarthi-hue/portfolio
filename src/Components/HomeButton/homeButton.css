@@ -1,0 +1,48 @@
+/* Center the button and give it comfy vertical padding */
+.homebtn-wrap {
+    display: flex;
+    justify-content: center;
+    padding: clamp(12px, 4vw, 28px) 0;
+  }
+  
+  /* The button itself (works for <a>/<NavLink>) */
+  .project-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  
+    /* mobile-friendly sizing */
+    height: 40px;
+    padding: 0 clamp(14px, 4vw, 22px);
+    font-size: clamp(15px, 2.8vw, 16px);
+    font-weight: 600;
+    line-height: 1;
+  
+    background: pink;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 999px;             /* nice pill shape */
+    cursor: pointer;
+    transition: transform .05s ease, background-color .15s ease, box-shadow .15s ease;
+  }
+  
+  /* Hover/active/focus for mouse & keyboard */
+  .project-button:hover { background: #e6a8c2; }
+  .project-button:active { transform: translateY(1px); }
+  
+  .project-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 192, 203, .6), 0 0 0 5px rgba(255,255,255,.35);
+  }
+  
+  /* Slightly larger on desktop */
+  @media (min-width: 900px) {
+    .project-button {
+      height: 42px;
+      font-size: 17px;
+      padding: 0 24px;
+    }
+  }
+  

@@ -1,0 +1,136 @@
+/* ======= Scoped palette for this page (purple-forward on black) ======= */
+.personal-container {
+  /* Local design tokens (scoped to this section) */
+  --pp-text: #f4f2fb;                 /* near-white text */
+  --pp-muted: #c9c3d8;                /* muted paragraph text */
+  --pp-surface: rgba(255, 255, 255, 0.06); /* card bg on black */
+  --pp-border: rgba(255, 255, 255, 0.14);
+  --pp-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+  /* Default accent (can be overridden per card) */
+  --pp-accent-1: #d78ce6;             /* orchid */
+  --pp-accent-2: #9b8cff;             /* periwinkle */
+
+  color: var(--pp-text);
+  display: grid;
+  gap: clamp(20px, 4vw, 36px);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(16px, 5vw, 40px);
+}
+
+/* Page heading */
+.personal-h1 {
+  margin: 0 0 clamp(6px, 1vw, 10px);
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  line-height: 1.15;
+  background: linear-gradient(90deg, var(--pp-accent-1), var(--pp-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ======= Cards ======= */
+.experience-card {
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  border-radius: 16px;
+  padding: clamp(16px, 4.5vw, 28px);
+  box-shadow: var(--pp-shadow);
+  backdrop-filter: blur(3px);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Per-card accent overrides (kept in the purple family) */
+.card--wf { --pp-accent-1: #d78ce6; --pp-accent-2: #b28afe; }   /* Wells Fargo: purple → periwinkle */
+.card--ibm { --pp-accent-1: #a78bfa; --pp-accent-2: #7c93ff; }   /* IBM: lavender → blue-violet */
+
+/* Header */
+.experience-header {
+  display: grid;
+  gap: 10px;
+  margin-bottom: clamp(10px, 2.5vw, 16px);
+}
+
+.experience-company {
+  margin: 0;
+  font-size: clamp(20px, 4.2vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  background: linear-gradient(90deg, var(--pp-accent-1), var(--pp-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* A thin gradient divider under the company name */
+.experience-divider {
+  height: 2px;
+  width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--pp-accent-1), var(--pp-accent-2));
+  opacity: 0.5;
+}
+
+/* Body copy */
+.experience-body {
+  margin: 0 0 clamp(10px, 2.5vw, 18px);
+  font-size: clamp(15px, 2.4vw, 18px);
+  line-height: 1.6;
+  color: var(--pp-muted);
+}
+
+/* Highlights */
+.highlights-title {
+  margin: 0 0 8px;
+  font-size: clamp(14px, 2.2vw, 16px);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--pp-text);
+  opacity: 0.9;
+}
+
+.highlights-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlight-item {
+  position: relative;
+  padding-left: 20px;
+  font-size: clamp(14px, 2.3vw, 16px);
+  line-height: 1.55;
+  color: var(--pp-text);
+}
+
+/* Accent bullet */
+.highlight-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, var(--pp-accent-1), var(--pp-accent-2));
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.06);
+}
+
+/* Responsive rhythm */
+@media (min-width: 900px) {
+  .personal-container {
+    gap: 28px;
+  }
+}

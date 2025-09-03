@@ -1,0 +1,99 @@
+/* ================= Black.css (mobile-first, 50/50 desktop) ================= */
+
+.section-black {
+    /* Scoped tokens */
+    --content-max: 1100px;
+    --page-gutter: clamp(16px, 5vw, 32px);
+    --column-gap-desktop: 22px;  /* gap between title and paragraph on desktop */
+    --paragraph-nudge: -6px;     /* slight lift so paragraph aligns with big title */
+    --block-space: clamp(24px, 6vw, 64px);
+  
+    /* Inherit page background; just ensure readable text */
+    color: white;
+    background: transparent;
+  }
+  
+  /* Inner container: safe gutters + vertical padding */
+  .container-black {
+    margin: 0 auto;
+    max-width: var(--content-max);
+  
+    padding-left: calc(var(--page-gutter) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--page-gutter) + env(safe-area-inset-right, 0px));
+    padding-top: var(--block-space);
+    padding-bottom: var(--block-space);
+  
+    display: grid;
+    grid-template-columns: 1fr;   /* mobile: stack */
+    gap: 16px;
+    align-items: start;
+  }
+  
+  /* Optional: fill first screen (top aligned) */
+  .hero-black {
+    min-height: 100vh;   /* fallback */
+    min-height: 100dvh;  /* mobile-correct */
+    display: block;
+  }
+  
+  /* Left column: title + logo (stacked) */
+  .heading-black {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;  /* space between title and logo */
+  }
+  
+  .title-black {
+    margin: 0;
+    line-height: 1.1;
+    font-size: clamp(28px, 5.5vw, 50px);
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  
+  .logo-black {
+    width: clamp(60px, 10vw, 100px);
+    height: clamp(60px, 10vw, 100px);
+    border-radius: 25px;
+    object-fit: cover;
+  }
+  
+  /* Right column: paragraph */
+  .paragraph-black {
+    margin: 0;
+    font-size: clamp(16px, 2.8vw, 22px);
+    line-height: 1.55;
+    max-width: 65ch;
+    align-self: start;
+    hyphens: auto;
+    min-width: 0;
+  }
+  
+  /* Children area reuses the same gutters below */
+  .children-black {
+    margin: 10px auto 0;
+    max-width: var(--content-max);
+    padding-left: calc(var(--page-gutter) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--page-gutter) + env(safe-area-inset-right, 0px));
+    padding-bottom: clamp(16px, 4vw, 32px);
+  }
+  
+  /* Very small phones: soften spacing/type a bit */
+  @media (max-width: 360px) {
+    .title-black { font-size: clamp(26px, 6.5vw, 46px); }
+    .container-black { gap: 14px; }
+  }
+  
+  /* Desktop: force 50/50 columns and apply optical nudge */
+  @media (min-width: 900px) {
+    .container-black {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* equal halves */
+      column-gap: var(--column-gap-desktop);
+    }
+    .paragraph-black {
+      margin-top: var(--paragraph-nudge);
+    }
+  }
+  

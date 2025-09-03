@@ -1,0 +1,58 @@
+/* ================= Problem.css (mobile-first, full-bleed) ================= */
+
+.background-problem {
+    /* Scoped tokens */
+    --content-max: 1100px;
+    --page-gutter: clamp(16px, 5vw, 32px);
+    --statement-size: clamp(20px, 5.5vw, 50px);
+  
+    /* Vertical space for the block */
+    --block-space: clamp(24px, 7vw, 72px);
+  
+    /* NEW: space between label and statement */
+    --label-gap: clamp(10px, 2.2vw, 16px);
+  }
+  
+  /* Force background to bleed to viewport edges even if body has padding */
+  .fullbleed-problem {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  
+  /* Inner container: safe gutters + vertical padding */
+  .container-problem {
+    margin: 0 auto;
+    max-width: var(--content-max);
+  
+    /* Safe-area support for notches + vertical padding */
+    padding-left: calc(var(--page-gutter) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--page-gutter) + env(safe-area-inset-right, 0px));
+    padding-top: var(--block-space);
+    padding-bottom: var(--block-space);
+  
+    display: grid;
+    gap: var(--label-gap); /* ← space between label and statement */
+  }
+  
+  /* Label and statement: same size & weight, wrap nicely on small screens */
+  .label-problem,
+  .text-problem {
+    margin: 0;
+    font-weight: 700;
+    font-size: var(--statement-size);
+    line-height: 1.15;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  /* Media inside this block should be fluid */
+  .background-problem img,
+  .background-problem video,
+  .background-problem svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  

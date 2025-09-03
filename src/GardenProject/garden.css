@@ -1,0 +1,134 @@
+/* ====================== garden.css (mobile-first, even layout) ====================== */
+
+/* Tokens */
+:root {
+    --garden-content-max: 1100px;
+    --garden-gutter: clamp(16px, 5vw, 32px);
+  
+    --garden-gap: clamp(14px, 3.5vw, 24px);
+    --garden-gap-lg: clamp(18px, 4.5vw, 32px);
+    --garden-gap-xl: clamp(24px, 6vw, 48px);
+  
+    --garden-radius: 12px;
+    --garden-shadow: 0 4px 10px rgba(0,0,0,.12);
+  
+    --garden-accent: rgb(80, 200, 120);
+  
+    /* media sizing (kept similar across sections) */
+    --garden-media-h: clamp(220px, 35vw, 420px);
+    --garden-media-h-wide: clamp(240px, 38vw, 460px);
+  
+    /* type scale */
+    --garden-text: clamp(16px, 2.6vw, 20px);
+    --garden-h3: clamp(18px, 3.8vw, 24px);
+  }
+  
+  /* Container + vertical rhythm */
+  .garden-container {
+    max-width: var(--garden-content-max);
+    margin: 0 auto;
+    padding-left: calc(var(--garden-gutter) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--garden-gutter) + env(safe-area-inset-right, 0px));
+  }
+  
+  .garden-stack > * + * { margin-top: var(--garden-gap-lg); }
+  
+  /* Two-column grid (stacks on mobile) */
+  .garden-row-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--garden-gap-lg);
+    align-items: stretch;
+  }
+  @media (min-width: 900px) {
+    .garden-row-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  /* Cards (uniform look) */
+  .garden-card {
+    background: var(--garden-accent);
+    color: #000;
+    padding: clamp(12px, 2.5vw, 20px);
+    border-radius: var(--garden-radius);
+    box-shadow: var(--garden-shadow);
+    border: 1px solid rgba(0,0,0,.06);
+    font-size: var(--garden-text);
+    line-height: 1.6;
+    display: grid;
+    gap: 10px;
+  
+    /* default equalizing height for non-tight cards */
+    min-height: clamp(180px, 26vw, 280px);
+  }
+  
+  /* Tighter cards for Ideation & Iteration (minimal white space) */
+  .garden-card--tight {
+    min-height: unset;
+    padding: clamp(10px, 2vw, 16px);
+  }
+  
+  /* Titles inside cards */
+  .garden-card-title {
+    margin: 0 0 6px 0;
+    font-size: var(--garden-h3);
+    line-height: 1.25;
+    font-weight: 700;
+  }
+  
+  /* Lists */
+  .garden-list { padding-left: 1.2em; margin: 0; }
+  .garden-list li + li { margin-top: 6px; }
+  .garden-ol { padding-left: 1.2em; margin: 0; }
+  .garden-ol li + li { margin-top: 6px; }
+  
+  /* Media (images) — similar visual size across sections */
+  .garden-media {
+    width: 100%;
+    height: var(--garden-media-h);
+    object-fit: contain;              /* show the whole image */
+    object-position: center;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--garden-radius);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .garden-media--wide {
+    height: var(--garden-media-h-wide);
+  }
+  
+  /* Figure/caption polish */
+  .garden-figure {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+  }
+  .garden-caption {
+    opacity: .95;
+    font-size: clamp(13px, 2.2vw, 15px);
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* Responsive YouTube embed */
+  .garden-yt {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+  }
+  .garden-yt iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--garden-radius);
+  }
+  
+  /* Legacy class kept for safety */
+  .garden-flex { display: contents; }
+  
