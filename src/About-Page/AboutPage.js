@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./About.css";
-import me from "./images/me.jpg";
 
 function AboutPage() {
   useEffect(() => {
@@ -31,7 +30,7 @@ function AboutPage() {
             </p>
           </div>
 
-          <img className="image-about" src={me} alt="Akhila" />
+          <img className="image-about" src="images/about-images/me.jpg" alt="Akhila" />
         </div>
 
         <p className="funfact-about">
