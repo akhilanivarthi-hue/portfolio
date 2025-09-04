@@ -22,6 +22,7 @@ function Header() {
 
   return (
     <nav className="nav-header fullbleed-header" aria-label="Primary">
+      <div id="top" />
       <div className="container-header">
         {/* Mobile menu button (left) */}
         <button

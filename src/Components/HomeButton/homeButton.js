@@ -5,7 +5,7 @@ import "./homeButton.css";
 function Button() {
   return (
     <section className="homebtn-wrap" aria-label="Back navigation">
-      <NavLink to="/" className="project-button">
+      <NavLink to="/#top" className="project-button">
         Back to home
       </NavLink>
     </section>
