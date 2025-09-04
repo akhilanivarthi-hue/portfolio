@@ -6,6 +6,7 @@ import Wifire from '../Wifire/Wifire.js';
 import Sony from '../Sony/Sony.js';
 import Personal from '../Personal-Projects/personalProjects.js';
 import Garden from '../GardenProject/garden.js';
+import GitLit from '../GitLit/gitLit.js';
 
 const AppRoutes = () => (
         <Routes>
@@ -15,6 +16,7 @@ const AppRoutes = () => (
             <Route path="/sony" element={<Sony />} />  
             <Route path="/work-experience" element={<Personal />} />
             <Route path="/garden" element={<Garden />} />
+            <Route path="/gitlit" element={<GitLit />} />
         </Routes>
     
 );

@@ -1,0 +1,91 @@
+:root {
+    --sony-radius: 12px;
+    --sony-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    --sony-card-font: clamp(14px, 1.9vw, 18px);
+  }
+  
+  .gitlit-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: clamp(16px, 5vw, 40px);
+  }
+  
+  .gitlit-section {
+    display: grid;
+    gap: clamp(18px, 3.5vw, 32px);
+    margin-block: clamp(28px, 6vw, 72px);
+  }
+  
+  /* Only keep boxes where they existed originally */
+  .gitlit-card {
+    background: #fcd464;
+    color: #000;
+    padding: clamp(12px, 2.5vw, 20px);
+    border-radius: var(--sony-radius);
+    box-shadow: var(--sony-shadow);
+    font-size: var(--sony-card-font);
+    line-height: 1.55;
+  }
+  
+  .gitlit-h3 { 
+    margin: 0 0 4px;
+    font-size: clamp(18px, 2.4vw, 22px);
+    font-weight: 700;
+  }
+  .gitlit-h4 {
+    margin: 0 0 6px;
+    font-size: clamp(16px, 2.2vw, 20px);
+    font-weight: 700;
+  }
+  .gitlit-text { margin: 0; }
+  
+  .gitlit-list { 
+    margin: 0; 
+    padding-left: 20px; 
+  }
+  .gitlit-list li { margin: 6px 0; }
+  
+  .gitlit-figure {
+    margin: 0;
+    display: grid;
+    gap: 10px;
+  }
+  
+  .gitlit-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--sony-shadow);
+  }
+  .gitlit-img--big {
+    width: min(100%, 1080px);
+    margin-inline: auto;
+  }
+  
+  .gitlit-caption {
+    opacity: .9;
+    font-size: clamp(13px, 1.8vw, 16px);
+  }
+  
+  /* Grids */
+  .gitlit-grid-2,
+  .gitlit-grid-3,
+  .gitlit-grid-stack {
+    display: grid;
+    gap: clamp(16px, 3vw, 28px);
+  }
+  .gitlit-grid-2 { grid-template-columns: 1fr; }
+  .gitlit-grid-3 { grid-template-columns: 1fr; }
+  .gitlit-grid-stack { grid-template-columns: 1fr; } /* always stacked */
+  
+  /* Desktop columns */
+  @media (min-width: 900px) {
+    .gitlit-grid-2 { grid-template-columns: 1fr 1fr; }     /* 2-up */
+    .gitlit-grid-3 { grid-template-columns: 1fr 1fr 1fr; } /* 3-up */
+  }
+  
+  /* Extra breathing room between big sections */
+  .gitlit-section + .gitlit-section {
+    margin-top: clamp(32px, 7vw, 88px);
+  }
+  

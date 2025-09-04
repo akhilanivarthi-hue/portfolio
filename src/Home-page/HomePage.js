@@ -27,17 +27,10 @@ function HomePage() {
           ImgBg="#d8540c"        // orange
         />
         <Projects
-          Title="Sony Connected Learning Pathway"
-          Label="A phone-first concept that personalizes the shared TV experience."
-          Image={sonylearningpathway}
-          Href="/sony"
-          ImgBg="#4884f4"        // blue
-        />
-        <Projects
           Title="GitLit"
           Label="A collaborative reading platform that combines reading, discussion, and examination."
           Image={gitlit}
-          Href="https://sites.google.com/u/1/d/1AtBccyHbSBNCnykaTJlcBBonuqyAU3J7/p/1_tzXmUfkNIi9O5sjzC3t5PtW7McvLQEe/preview?authuser=1"
+          Href="/gitlit"
           ImgBg="#fcd464"        // yellow
         />
         <Projects
@@ -46,6 +39,13 @@ function HomePage() {
           Image={garden}
           Href="/garden"
           ImgBg="#588c2c"        // green
+        />
+        <Projects
+          Title="Sony Connected Learning Pathway"
+          Label="A phone-first concept that personalizes the shared TV experience."
+          Image={sonylearningpathway}
+          Href="/sony"
+          ImgBg="#4884f4"        // blue
         />
       </section>
     </>

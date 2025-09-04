@@ -140,7 +140,7 @@ function Sony() {
       <White
         Title="Personas & Storyboarding"
         Image={Person}
-        Summary="Research insights rolled into a persona representing a young adult in a shared living situation."
+        Summary="From the research, we crated a persona representing a young adult in a shared living situation."
       >
         <div className="sony-section">
           <img className="sony-persona-img" src={Persona} alt="User persona" />
