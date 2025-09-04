@@ -6,6 +6,8 @@ function AboutPage() {
     window.scrollTo(0, 0);
   }, []);
 
+  const meSrc = `${process.env.PUBLIC_URL}/images/about-images/me.jpg`;
+
   return (
     <section className="section-about">
       <div className="container-about">
@@ -30,7 +32,12 @@ function AboutPage() {
             </p>
           </div>
 
-          <img className="image-about" src="images/about-images/me.jpg" alt="Akhila" />
+          <img
+            className="image-about"
+            src={meSrc}
+            alt="Akhila"
+            loading="lazy"
+          />
         </div>
 
         <p className="funfact-about">
